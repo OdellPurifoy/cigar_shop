@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cigars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Origin</th>
+      <th>Description</th>
+      <th>Size</th>
+      <th>Shape</th>
+      <th>Binder</th>
+      <th>Filler</th>
+      <th>Wrapper</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cigars.each do |cigar| %>
+      <tr>
+        <td><%= cigar.brand %></td>
+        <td><%= cigar.origin %></td>
+        <td><%= cigar.description %></td>
+        <td><%= cigar.size %></td>
+        <td><%= cigar.shape %></td>
+        <td><%= cigar.binder %></td>
+        <td><%= cigar.filler %></td>
+        <td><%= cigar.wrapper %></td>
+        <td><%= cigar.price %></td>
+        <td><%= link_to 'Show', cigar %></td>
+        <td><%= link_to 'Edit', edit_cigar_path(cigar) %></td>
+        <td><%= link_to 'Destroy', cigar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cigar', new_cigar_path %>

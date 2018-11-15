@@ -1,0 +1,21 @@
+
+<%= simple_form_for(@cigar) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :brand %>
+    <%= f.input :origin %>
+    <%= f.input :description %>
+    <%= f.input :size %>
+    <%= f.input :shape %>
+    <%= f.input :binder %>
+    <%= f.input :filler %>
+    <%= f.input :wrapper %>
+    <%= f.input :price %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
