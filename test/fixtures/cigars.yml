@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand: MyString
+  origin: MyString
+  description: MyText
+  size: 1
+  shape: MyString
+  binder: MyString
+  filler: MyString
+  wrapper: MyString
+  price: 9.99
+
+two:
+  brand: MyString
+  origin: MyString
+  description: MyText
+  size: 1
+  shape: MyString
+  binder: MyString
+  filler: MyString
+  wrapper: MyString
+  price: 9.99
