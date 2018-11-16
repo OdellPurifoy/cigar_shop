@@ -1,5 +1,15 @@
-<h1>New Cigar</h1>
+<% content_for :header do %>
+  <section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Sell a Cigar
+        </h1>
+      </div>
+    </div>
+  </section>
+<% end %>
 
-<%= render 'form', cigar: @cigar %>
-
-<%= link_to 'Back', cigars_path %>
+<div class="pv4">
+  <%= render 'form', cigar: @cigar %>
+</div>

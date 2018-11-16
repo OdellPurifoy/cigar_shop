@@ -1,30 +1,29 @@
 class CigarsController < ApplicationController
-  before_action :set_cigar, only: [:show, :edit, :update, :destroy]
+  before_action :set_cigar, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /cigars
   # GET /cigars.json
   def index
-    @cigars = Cigar.all
+    @cigars = Cigar.all.order('created_at desc')
   end
 
   # GET /cigars/1
   # GET /cigars/1.json
-  def show
-  end
+  def show; end
 
   # GET /cigars/new
   def new
-    @cigar = Cigar.new
+    @cigar = current_user.cigars.build
   end
 
   # GET /cigars/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /cigars
   # POST /cigars.json
   def create
-    @cigar = Cigar.new(cigar_params)
+    @cigar = current_user.cigars.build(cigar_params)
 
     respond_to do |format|
       if @cigar.save
@@ -62,13 +61,14 @@ class CigarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cigar
-      @cigar = Cigar.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cigar_params
-      params.require(:cigar).permit(:brand, :origin, :description, :size, :shape, :binder, :filler, :wrapper, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cigar
+    @cigar = Cigar.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cigar_params
+    params.require(:cigar).permit(:brand, :origin, :description, :size, :shape, :binder, :filler, :wrapper, :price, :image)
+  end
 end
