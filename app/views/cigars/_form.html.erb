@@ -1,21 +1,152 @@
+<div class="columns">
+  <div class="column is-8 is-centered">
 
-<%= simple_form_for(@cigar) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= simple_form_for @cigar, html: { multipart: true } do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :brand %>
-    <%= f.input :origin %>
-    <%= f.input :description %>
-    <%= f.input :size %>
-    <%= f.input :shape %>
-    <%= f.input :binder %>
-    <%= f.input :filler %>
-    <%= f.input :wrapper %>
-    <%= f.input :price %>
+    <div class="columns">
+
+      <div class="field column is-9">
+        <div class="control">
+          <%= f.input :brand , required: true, input_html: { class: "input"}, wrapper: false, label_html: { class:"label" } %>
+        </div>
+      </div>
+
+      <div class="field column">
+        <div class="control">
+          <%= f.input :price, required: true, input_html: { class:"input", maxlength: 7 }, wrapper: false, label_html: { class:"label" } %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :origin, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :wrapper, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :binder, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :filler, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :shape, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :size, required: true, input_html: { class:"input" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :description, required: true, input_html: { class:"textarea" }, wrapper: false, label_html: { class:"label" } %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="field column is-4">
+        <div class="control">
+          <label class="label">Brand</label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :brand, collection: Cigar::BRAND, prompt: "Select brand" %>
+            </span>
+            <span class="icon is-small is-left">
+              <i class="fa fa-tag"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field column is-4">
+        <div class="control">
+          <label class="label">Wrapper</label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :wrapper, collection: Cigar::WRAPPER, prompt: "Select wrapper" %>
+            </span>
+            <span class="icon is-small is-left">
+              <i class="fa fa-paint-brush"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field column is-4">
+        <div class="control">
+          <label class="label">Binder</label>
+          <div class="control has-icons-left">
+            <span class="select">
+              <%= f.input_field :binder, collection: Cigar::BINDER, prompt: "Select binder" %>
+            </span>
+            <span class="icon is-small is-left">
+              <i class="fa fa-paint-brush"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field column is-4">
+      <div class="control">
+        <label class="label">Filler</label>
+        <div class="control has-icons-left">
+          <span class="select">
+            <%= f.input_field :filler, collection: Cigar::FILLER, prompt: "Select filler" %>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-paint-brush"></i>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="field">
+    <div class="control">
+      <label class="label">Add images</label>
+      <div class="file">
+        <label class="file-label">
+          <%= f.input :image, as: :file, input_html: { class:"file-input cigar-image" }, label: false, wrapper: false %>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label">Choose a file…</span>
+          </span>
+        </label>
+      </div>
+    </div>
   </div>
+  <output id="list"></output>
+  <hr/>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <%= f.button :submit, class: 'button is-warning' %>
+      <%= link_to 'Cancel', cigars_path, class:'button is-light' %>
+    </div>
+  </div>
+
 <% end %>
+</div>
+</div>
