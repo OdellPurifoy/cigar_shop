@@ -9,7 +9,7 @@ class CreateCigars < ActiveRecord::Migration[5.2]
       t.string :binder
       t.string :filler
       t.string :wrapper
-      t.decimal :price
+      t.decimal :price, precision: 5, scale: 2, default: 0
 
       t.timestamps
     end
