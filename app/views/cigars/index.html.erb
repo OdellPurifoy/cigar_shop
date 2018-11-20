@@ -1,43 +1,38 @@
-<p id="notice"><%= notice %></p>
+<% content_for :header do %>
+  <section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Browse the latest cigars
+        </h1>
+      </div>
+    </div>
+  </section>
+<% end %>
 
-<h1>Cigars</h1>
+<div class="cigar-index-grid pt4">
+  <% @cigars.each do |cigar| %>
+    <div class="cigar border-light">
+      <div class="cigar-thumb">
+        <%= link_to image_tag(cigar.image_url(:thumb)), cigar %>
+        <% if cigar.brand? %>
+          <div class="brand">
+            <span class="tag is-dark"><%= cigar.brand %></span>
+          </div>
+        <% end %>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Brand</th>
-      <th>Origin</th>
-      <th>Description</th>
-      <th>Size</th>
-      <th>Shape</th>
-      <th>Binder</th>
-      <th>Filler</th>
-      <th>Wrapper</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="pa3">
+        <h3 class="fw7 f4 title"><%= link_to cigar.brand %></h3>
+        <p class="has-text-gray fg pt1">Sold by
+          <%= cigar.user.name %></p>
+        <p class="f3 fw6 has-text-right pt2 price"><%= number_to_currency(cigar.price) %></p>
 
-  <tbody>
-    <% @cigars.each do |cigar| %>
-      <tr>
-        <td><%= cigar.brand %></td>
-        <td><%= cigar.origin %></td>
-        <td><%= cigar.description %></td>
-        <td><%= cigar.size %></td>
-        <td><%= cigar.shape %></td>
-        <td><%= cigar.binder %></td>
-        <td><%= cigar.filler %></td>
-        <td><%= cigar.wrapper %></td>
-        <td><%= cigar.price %></td>
-        <td><%= link_to 'Show', cigar %></td>
-        <td><%= link_to 'Edit', edit_cigar_path(cigar) %></td>
-        <td><%= link_to 'Destroy', cigar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cigar', new_cigar_path %>
+        <% if cigar_author(cigar) %>
+          <%= link_to 'Edit', edit_cigar_path(cigar), class: "button is-small" %>
+          <%= link_to 'Delete', cigar, method: :delete, data: { confirm: "Are you sure you want to delete this cigar?"}, class: "button is-small" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

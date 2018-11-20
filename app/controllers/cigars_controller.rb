@@ -41,7 +41,7 @@ class CigarsController < ApplicationController
   def update
     respond_to do |format|
       if @cigar.update(cigar_params)
-        format.html { redirect_to @cigar, notice: 'Cigar was successfully updated.' }
+        format.html { redirect_to cigars_path, notice: 'Cigar was successfully updated.' }
         format.json { render :show, status: :ok, location: @cigar }
       else
         format.html { render :edit }
