@@ -1,49 +1,60 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :body_class, 'bg-light' %>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @cigar.brand %>
-</p>
+<section class="section cigar-show">
+  <div class="columns">
+    <div class="column is-8 has-text-weight-bold">
+      <h1 class="has-text-weight-bold"><%= @cigar.brand %></h1>
 
-<p>
-  <strong>Origin:</strong>
-  <%= @cigar.origin %>
-</p>
+      <ul class="pv1 has-text-weight-bold">
+        <% if @cigar.brand? && @cigar.origin? %>
+          <li class="inline-block pr3"><%= @cigar.brand %>,
+            <%= @cigar.origin %></li>
+        <% end %>
+      </ul>
+      <div class="feature-image">
+        <%= image_tag(@cigar.image_url(:default)) %>
+      </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @cigar.description %>
-</p>
+      <div class="content pa4 mt3 bg-white border-radius-3">
+        <%= @cigar.description %>
+      </div>
 
-<p>
-  <strong>Size:</strong>
-  <%= @cigar.size %>
-</p>
+      <h3 class="subtitle is-4 pt5">Cigar Details</h3>
 
-<p>
-  <strong>Shape:</strong>
-  <%= @cigar.shape %>
-</p>
+      <table class="table is-narrow">
+        <% if @cigar.wrapper %>
+          <tr>
+            <td class="has-text-weight-bold">Wrapper:</td>
+            <td><%= @cigar.wrapper %></td>
+          </tr>
+        <% end %>
 
-<p>
-  <strong>Binder:</strong>
-  <%= @cigar.binder %>
-</p>
+        <% if @cigar.binder %>
+          <tr>
+            <td class="has-text-weight-bold">Binder:</td>
+            <td><%= @cigar.binder %></td>
+          </tr>
+        <% end %>
 
-<p>
-  <strong>Filler:</strong>
-  <%= @cigar.filler %>
-</p>
+        <% if @cigar.filler %>
+          <tr>
+            <td class="has-text-weight-bold">Filler:</td>
+            <td><%= @cigar.filler %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="column is-3 is-offset-1">
+      <div class="bg-white pa4 border-radius-3">
+        <h4 class="title is-5 has-text-centered"><%= number_to_currency(@cigar.price) %></h4>
+        <p class="has-text-centered mb4">Sold by:
+          <%= @cigar.user.name %></p>
+        <%= button_to 'Add to Cart', '#', class: "button is-warning add-to-cart" %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Wrapper:</strong>
-  <%= @cigar.wrapper %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @cigar.price %>
-</p>
-
-<%= link_to 'Edit', edit_cigar_path(@cigar) %> |
-<%= link_to 'Back', cigars_path %>
+  <% if cigar_author(@cigar) %>
+    <%= link_to 'Edit', edit_cigar_path(@cigar), class: 'button' %>
+  <% end %>
+</section>

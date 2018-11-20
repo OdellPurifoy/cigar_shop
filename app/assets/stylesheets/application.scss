@@ -28,11 +28,11 @@ $link-hover: #222;
   margin-bottom: 0;
 }
 
-.instrument-index-grid {
+.cigar-index-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 
-  .instrument {
+  .cigar {
     border-left: 0;
     border-top: 0;
     position: relative;
@@ -48,7 +48,7 @@ $link-hover: #222;
     }
   }
 
-  .instrument-thumb {
+  .cigar-thumb {
     position: relative;
     max-height: 150px;
     overflow: hidden;
@@ -61,7 +61,7 @@ $link-hover: #222;
       }
     }
 
-    .condition {
+    .brand {
       position: absolute;
       bottom: 10px;
       right: 9px;
