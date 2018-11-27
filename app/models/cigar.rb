@@ -3,6 +3,7 @@ class Cigar < ApplicationRecord
   serialize :image, JSON # If SQLite is used
 
   belongs_to :user, optional: true
+  has_many :line_items
 
   validates :brand, :origin, :size, :shape, :binder, :filler, :wrapper, :price, presence: true
   validates :description, presence: true, length: { maximum: 255, too_long: '%{count} characters is the maximum allowed.' }
